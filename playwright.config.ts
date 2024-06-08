@@ -37,7 +37,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         launchOptions: {
-          headless: false
+          headless: true
         }
        },
     },
