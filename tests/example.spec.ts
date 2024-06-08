@@ -1,14 +1,18 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
+test('has title', {tag: '@smoke'}, async ({ page }) => {
   await page.goto('https://playwright.dev/');
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Playwright/);
 });
 
-test('get started link', async ({ page }) => {
+test('get started link', { tag: '@test' }, async ({ page, browser }) => {
   await page.goto('https://playwright.dev/');
+  test.info().annotations.push({
+    type: 'browser version',
+    description: browser.version()
+  })
 
   // Click the get started link.
   await page.getByRole('link', { name: 'Get started' }).click();
